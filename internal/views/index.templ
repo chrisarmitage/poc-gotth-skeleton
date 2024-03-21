@@ -1,0 +1,62 @@
+package views
+
+templ Index() {
+    @base() {
+    <h3 class="
+        text-slate-900
+        dark:text-white
+        mb-4 text-xl font-bold">
+        List of records
+    </h3>
+    
+    <div hx-get="/records" hx-trigger="load"></div>
+    } 
+}
+
+templ base() {
+    <html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        @header()
+        <div class="
+            bg-white text-slate-500
+            dark:bg-slate-800 dark:text-slate-400
+            px-6 py-6">
+            { children... }
+        </div>
+    </body>
+    </html>
+}
+
+templ header() {
+    <nav class="
+        bg-white border-neutral-100
+        dark:bg-slate-800 dark:border-white/10
+        flex-no-wrap relative flex w-full items-center justify-between shadow-dark-mild border-b-2 py-4">
+      <div class="flex w-full flex-wrap items-center justify-between px-3">
+
+      <ul class="list-style-none me-auto flex flex-col ps-0 lg:flex-row">
+        <li class="
+            text-slate-900
+            dark:text-white
+            mb-4 lg:px-2 lg:mb-0 lg:pe-2">
+          Header
+        </li>        
+      </ul>
+
+      </div>
+    </nav>
+}
+
+templ List(l []string) {
+    <ul class="text-slate-500 dark:text-slate-400">
+    for _, s := range l {
+        <li class="py-2">{ s }</li>
+    }
+    </ul>
+}
